@@ -21,6 +21,16 @@ export const ButtonGroup = styled('div')({
 	marginRight:'5%'
 })
 
+export const ModalContainer = styled('div')({
+	display:'flex',
+	position:'absolute',
+	flexDirection:'column',
+	alignItems:'center',
+	top:'50%',
+	left:'50%',
+	transform: 'translate(-50%, -50%)',
+	backgroundColor:'white',
+})
 export const StyledText = styled(Typography)({
 	color:'white',
 })

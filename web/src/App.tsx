@@ -10,9 +10,8 @@ import { log } from './type';
 function App() {
   const [list,setList] = useState<log[]>()
   // Initialize Firebase
-  const config = process.env.REACT_APP_KEY
-  let firebaseConfig = JSON.parse('{}');
-  config? firebaseConfig = JSON.parse(config):firebaseConfig = JSON.parse('{}')
+  let firebaseConfig = {};
+  firebaseConfig = process.env.REACT_APP_KEY? JSON.parse(process.env.REACT_APP_KEY):{}
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app)
 
@@ -23,7 +22,8 @@ function App() {
       //const logList = snapshot.docs.map(doc => doc.get("label"));
       let logList:log[] = []
       for(let i of snapshot.docs){
-        let temp:log = { sound:i.get("sound"), 
+        let temp:log = {id:i.id, 
+                        sound:i.get("sound"), 
                         label:i.get("label"), 
                         datetime:i.get("datetime"), 
                         favorite:i.get("favorite"), 

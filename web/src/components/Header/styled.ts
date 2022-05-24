@@ -5,7 +5,8 @@ export const Container = styled('div')({
 	display:'flex',
 	width:'100%',
 	height:'10vh',
-	backgroundColor:'#4e5593'
+	backgroundColor:'#4e5593',
+	marginBottom:'5%',
 })
 
 export const ButtonContainer = styled('div')({
