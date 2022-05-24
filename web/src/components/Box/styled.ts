@@ -1,11 +1,26 @@
+import { Typography } from "@mui/material";
 import { styled } from "@mui/system";
 
 export const Container = styled('div')({
 	display:'flex',
-	alignItems:'center',
+	flexDirection:'column',
 	width:'80%',
 	height:'10%',
-	backgroundColor:'black',
+	backgroundColor:'#404040',
 	marginTop:'2%',
-	borderRadius:'10px'
+	borderRadius:'10px',
+	paddingLeft:'5%',
+	paddingTop:'1%',
+	boxShadow:'5px 5px black',
+})
+
+export const ButtonGroup = styled('div')({
+	display:'flex',
+	flexDirection:'row-reverse',
+	marginBottom:'1%',
+	marginRight:'5%'
+})
+
+export const StyledText = styled(Typography)({
+	color:'white',
 })
