@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, ButtonGroup, StyledText, ModalContainer } from "./styled"
+import { Container, ButtonGroup, StyledText, ModalContainer, StyledButton } from "./styled"
 import StarIcon from '@mui/icons-material/Star';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CheckIcon from '@mui/icons-material/Check';
@@ -23,6 +23,10 @@ export default function Box(props:{data:log}){
 	const [name, setName] = useState('')
   	const handleOpen = () => setOpen(true);
   	const handleClose = () => setOpen(false);
+	//Delete comfirmation dialog
+	const [open2, setOpen2] = useState(false);
+  	const handleOpen2 = () => setOpen2(true);
+  	const handleClose2 = () => setOpen2(false);
 	
 	async function changeName(){
 		await updateDoc(ref,{
@@ -45,7 +49,11 @@ export default function Box(props:{data:log}){
 		})
 		refresh()
 	}
-
+	async function deletedocs(){
+		//Delete from firebase
+		console.log("delete")
+		handleClose2()
+	}
 	async function refresh(){
 		const doc = await getDoc(ref)
 		setLabel(doc.get("label"))
@@ -66,8 +74,14 @@ export default function Box(props:{data:log}){
 					<Button onClick={changeName}>Change Name</Button>
 				</ModalContainer>
 			</Modal>
+			<Modal open={open2} onClose={handleClose2}>
+				<ModalContainer>
+					<Typography style={{alignSelf:'flex-start', marginLeft:'5%'}}>Permanently delete this log? This action cannot be undone</Typography>
+					<StyledButton onClick={deletedocs}>Delete</StyledButton>
+				</ModalContainer>
+			</Modal>
 			<ButtonGroup>
-				<DeleteForeverIcon fontSize="large" style={{color:'white'}}/>
+				<DeleteForeverIcon onClick={handleOpen2} fontSize="large" style={{color:'white'}}/>
 				{check? 
 					<CheckIcon onClick={toggleCheck} fontSize="large" style={{color:'green'}}/>:
 					<CheckIcon onClick={toggleCheck} fontSize="large" style={{color:'white'}}/>

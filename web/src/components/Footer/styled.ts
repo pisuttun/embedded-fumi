@@ -1,4 +1,5 @@
 import { styled } from "@mui/system";
+import { Button } from "@mui/material";
 
 export const Container = styled('div')({
 	display:'flex',
@@ -8,4 +9,9 @@ export const Container = styled('div')({
 	width:'100%',
 	height:'10vh',
 	backgroundColor:'#4e5593',
+})
+
+export const StyledButton = styled(Button)({
+	backgroundColor:'white',
+
 })

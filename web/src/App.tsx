@@ -1,62 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer'
+import React from 'react';
 import { firebaseConfig } from './config';
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import Box from './components/Box';
-import { log } from './type';
+import MainPage from './components/MainPage';
+import { Container, SignInButton } from './styled'
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth"
+import { Typography } from '@mui/material';
 
 function App() {
-  const [list, setList] = useState<log[]>()
-  const [mode, setMode] = useState(1)
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app)
+  const auth = getAuth(app)
+  const [user] = useAuthState(auth)
 
-  useEffect(() => {
-    async function fetchAll(){
-      const col = collection(db,'logs')
-      const snapshot = await getDocs(col);
-      //const logList = snapshot.docs.map(doc => doc.get("label"));
-      let logList:log[] = []
-      for(let i of snapshot.docs){
-        let temp:log = {id:i.id, 
-                        sound:i.get("sound"), 
-                        label:i.get("label"), 
-                        datetime:i.get("datetime"), 
-                        favorite:i.get("favorite"), 
-                        checked:i.get("checked"), 
-                      }
-        logList.push(temp)
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth,provider);
+  }
+  function SignIn(){
+    return (
+      <Container>
+        <Typography variant="h5" style={{marginBottom:'3vh'}}>House's Sentinel</Typography>
+        <SignInButton variant="outlined" onClick={signInWithGoogle}>Sign in with Google</SignInButton>
+      </Container>
+    )
+  }
+  function validAccount(){
+    const validAccount = ["pisuttun@gmail.com", "priasdevo@gmail.com", "priasdevo@gmail.com"]
+    //console.log(auth.currentUser?.email)
+    if(auth.currentUser?.email){
+      if(validAccount.includes(auth.currentUser.email)){
+        return true
       }
-      setList(logList)
-
+      auth.signOut()
+      alert("Access denied")
     }
-    fetchAll()
-  }, []);
-
-  let boxList = []
-  if(list){
-    for(let i of list){
-      if(mode === 1 && i.checked === false)
-        boxList.push(<Box data={i}/>)
-      if(mode === 2 && i.favorite)
-        boxList.push(<Box data={i}/>)
-      if(mode === 3)
-        boxList.push(<Box data={i}/>)
-    }
+    return false
   }
   return (
     <>
-      <Header mode={mode} setMode={setMode}/>
-        <div style={{display:'flex',alignItems:'center',flexDirection:'column'}}>
-          {boxList}
-        </div>
-      <Footer/>
+      {!user&&<SignIn/>}   
+      {user && (validAccount()? <MainPage/>:<SignIn/>)}
     </>
   );
 }
+
 
 export default App;

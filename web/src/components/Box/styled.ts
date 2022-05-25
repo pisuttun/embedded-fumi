@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 
 export const Container = styled('div')({
@@ -29,11 +29,18 @@ export const ModalContainer = styled('div')({
 	width:'80%',
 	top:'50%',
 	left:'50%',
-	paddingTop:'2%',
+	paddingTop:'2vh',
 	transform: 'translate(-50%, -50%)',
 	borderRadius:'10px',
 	backgroundColor:'white',
 })
+
+export const StyledButton = styled(Button)({
+	backgroundColor:'red',
+	color:'white',
+	marginBottom:'1vh'
+})
+
 export const StyledText = styled(Typography)({
 	color:'white',
 })
