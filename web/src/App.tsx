@@ -7,7 +7,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import Box from './components/Box';
 import { log } from './type';
-import { idText } from 'typescript';
 
 function App() {
   const [list, setList] = useState<log[]>()

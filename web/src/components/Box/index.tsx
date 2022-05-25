@@ -61,8 +61,7 @@ export default function Box(props:{data:log}){
 			<StyledText onClick={handleOpen}>Tap to label</StyledText>
 			<Modal open={open} onClose={handleClose}>
 				<ModalContainer>
-					<StyledText>modal test</StyledText>
-					<Typography></Typography>
+					<Typography style={{alignSelf:'flex-start', marginLeft:'5%'}}>Enter new name:</Typography>
 					<TextField onChange={(e)=>setName(e.target.value)} variant="filled" style={{width:'80%'}}/> 
 					<Button onClick={changeName}>Change Name</Button>
 				</ModalContainer>

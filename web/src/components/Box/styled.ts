@@ -7,11 +7,11 @@ export const Container = styled('div')({
 	width:'80%',
 	height:'10%',
 	backgroundColor:'#404040',
-	marginTop:'2%',
+	marginTop:'5vh',
 	borderRadius:'10px',
 	paddingLeft:'5%',
 	paddingTop:'1%',
-	boxShadow:'5px 5px black',
+	boxShadow:'5px 5px 5px black',
 })
 
 export const ButtonGroup = styled('div')({
@@ -26,9 +26,12 @@ export const ModalContainer = styled('div')({
 	position:'absolute',
 	flexDirection:'column',
 	alignItems:'center',
+	width:'80%',
 	top:'50%',
 	left:'50%',
+	paddingTop:'2%',
 	transform: 'translate(-50%, -50%)',
+	borderRadius:'10px',
 	backgroundColor:'white',
 })
 export const StyledText = styled(Typography)({

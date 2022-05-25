@@ -3,7 +3,7 @@ import { styled } from "@mui/system";
 export const Container = styled('div')({
 	display:'flex',
 	position:'absolute',
-	top:'90vh',
+	bottom:'0',
 	alignItems:'center',
 	width:'100%',
 	height:'10vh',
