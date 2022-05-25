@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer'
+import { firebaseConfig } from './config';
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import Box from './components/Box';
 import { log } from './type';
+import { idText } from 'typescript';
 
 function App() {
-  const [list,setList] = useState<log[]>()
+  const [list, setList] = useState<log[]>()
+  const [mode, setMode] = useState(1)
   // Initialize Firebase
-  let firebaseConfig = {};
-  firebaseConfig = process.env.REACT_APP_KEY? JSON.parse(process.env.REACT_APP_KEY):{}
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app)
 
@@ -39,13 +40,18 @@ function App() {
 
   let boxList = []
   if(list){
-    for(let i = 0; i < list.length; i++){
-      boxList.push(<Box data={list[i]}/>)
+    for(let i of list){
+      if(mode === 1 && i.checked === false)
+        boxList.push(<Box data={i}/>)
+      if(mode === 2 && i.favorite)
+        boxList.push(<Box data={i}/>)
+      if(mode === 3)
+        boxList.push(<Box data={i}/>)
     }
   }
   return (
     <>
-      <Header/>
+      <Header mode={mode} setMode={setMode}/>
         <div style={{display:'flex',alignItems:'center',flexDirection:'column'}}>
           {boxList}
         </div>
