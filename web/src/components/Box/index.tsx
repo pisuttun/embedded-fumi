@@ -10,7 +10,7 @@ import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore/lite';
 import { Modal, TextField, Button, Typography } from "@mui/material";
 
 export default function Box(props:{data:log}){
-	const datetime = props.data.datetime.split(',')[1].slice(0,-4)
+	const datetime = props.data.datetime.slice(0,-7)
 	const [label, setLabel] = useState('')
 	const [check, setCheck] = useState(false)
 	const [fav, setFav] = useState(false)
