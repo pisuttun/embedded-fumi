@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import { styled } from "@mui/system";
 
 export const Container = styled('div')({
@@ -14,10 +13,16 @@ export const Container = styled('div')({
 	paddingTop:'2vh',
 	transform: 'translate(-50%, -50%)',
 	borderRadius:'10px',
-	backgroundColor:'#FAFAFA',
+	backgroundColor:'#F0F0F0',
 })
 
-export const SignInButton = styled(Button)({
-	color:'white',
-	backgroundColor:'#1A73E8',
+export const SignInButton = styled('div')({
+	display:'flex',
+	alignItems:'center',
+	justifyContent:'center',
+	backgroundColor:'white',
+	border:'1px solid black',
+	width:'60%',
+	height:'5vh',
+	borderRadius:'10px'
 })

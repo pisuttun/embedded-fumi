@@ -6,6 +6,7 @@ import { Container, SignInButton } from './styled'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth"
 import { Typography } from '@mui/material';
+import logo from "./google.png"
 
 function App() {
   // Initialize Firebase
@@ -20,13 +21,15 @@ function App() {
   function SignIn(){
     return (
       <Container>
-        <Typography variant="h5" style={{marginBottom:'3vh'}}>House's Sentinel</Typography>
-        <SignInButton variant="outlined" onClick={signInWithGoogle}>Sign in with Google</SignInButton>
+        <Typography variant="h5" style={{marginBottom:'3vh'}}>Hausu Sentinel</Typography>
+        <SignInButton onClick={signInWithGoogle}>
+          <img src={logo} style={{height:'60%',width:'auto'}} alt="google"/>Sign in with Google
+        </SignInButton>
       </Container>
     )
   }
   function validAccount(){
-    const validAccount = ["pisuttun@gmail.com", "priasdevo@gmail.com", "priasdevo@gmail.com"]
+    const validAccount = ["pisuttun@gmail.com", "priasdevo@gmail.com", "pochara2544@gmail.com"]
     //console.log(auth.currentUser?.email)
     if(auth.currentUser?.email){
       if(validAccount.includes(auth.currentUser.email)){

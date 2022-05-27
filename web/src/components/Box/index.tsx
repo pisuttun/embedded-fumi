@@ -64,9 +64,9 @@ export default function Box(props:{data:log}){
 
 	return (
 		<Container>
-			<StyledText style={{alignSelf:'flex-end', marginRight:'1%'}}>{datetime}</StyledText>
+			<StyledText style={{alignSelf:'flex-end', marginRight:'3%'}}>{datetime}</StyledText>
 			<StyledText variant="h4">{label}</StyledText>
-			<StyledText onClick={handleOpen}>Tap to label</StyledText>
+			<StyledText onClick={handleOpen} style={{textDecoration:'underline'}}>Tap to label</StyledText>
 			<Modal open={open} onClose={handleClose}>
 				<ModalContainer>
 					<Typography style={{alignSelf:'flex-start', marginLeft:'5%'}}>Enter new name:</Typography>
@@ -90,6 +90,7 @@ export default function Box(props:{data:log}){
 					<StarIcon onClick={toggleFav} fontSize="large" style={{color:'yellow'}}/>:
 					<StarIcon onClick={toggleFav} fontSize="large" style={{color:'white'}}/>
 				}
+				<StyledText style={{marginLeft:'0',marginRight:'auto'}}>{'- '+props.data.type}</StyledText>
 			</ButtonGroup>
 		</Container>
 	)

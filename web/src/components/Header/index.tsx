@@ -1,8 +1,9 @@
 import React from "react";
-import { Tooltip, Typography } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import logo from './logo.png'
 import { ButtonContainer, Container, StyledButton } from "./styled"
 
 export default function Header(props:{mode:number, setMode:(num:number)=>void}){
@@ -34,7 +35,7 @@ export default function Header(props:{mode:number, setMode:(num:number)=>void}){
 	}
 	return(
 		<Container>
-			<Typography variant="h2">HS</Typography>
+			<img src={logo} alt="logo" style={{height:'100%', marginLeft:'5%'}}/>
 			<ButtonContainer>
 				{buttonList}
 			</ButtonContainer>

@@ -21,7 +21,7 @@ export default function MainPage() {
       let logList:log[] = []
       for(let i of snapshot.docs){
         let temp:log = {id:i.id, 
-                        sound:i.get("sound"), 
+                        type:i.get("type"), 
                         label:i.get("label"), 
                         datetime:i.get("datetime"), 
                         favorite:i.get("favorite"), 

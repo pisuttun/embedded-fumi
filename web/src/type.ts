@@ -1,7 +1,7 @@
 export interface log{
 	id:string,
-	sound:string,
 	label:string,
+	type:string,
 	datetime:string,
 	checked:boolean,
 	favorite:boolean,
