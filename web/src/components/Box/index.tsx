@@ -6,7 +6,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import { log } from "../../type";
 import { firebaseConfig } from '../../config';
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore/lite';
+import { getFirestore, doc, updateDoc, deleteDoc, getDoc } from 'firebase/firestore/lite';
 import { Modal, TextField, Button, Typography } from "@mui/material";
 
 export default function Box(props:{data:log}){
@@ -50,9 +50,9 @@ export default function Box(props:{data:log}){
 		refresh()
 	}
 	async function deletedocs(){
-		//Delete from firebase
-		console.log("delete")
+		await deleteDoc(ref)
 		handleClose2()
+		window.location.reload()
 	}
 	async function refresh(){
 		const doc = await getDoc(ref)
