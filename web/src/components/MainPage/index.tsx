@@ -7,7 +7,7 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import Box from '../Box';
 import { log } from '../../type';
 export default function MainPage() {
-  const [list, setList] = useState<log[]>()
+  const [list, setList] = useState<log[]>([])
   const [mode, setMode] = useState(1)
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
@@ -33,10 +33,11 @@ export default function MainPage() {
     }
     fetchAll()
   }, []);
+  const sortedList = list.sort(compare)
 
   let boxList = []
   if(list){
-    for(let i of list){
+    for(let i of sortedList){
       if(mode === 1 && i.checked === false)
         boxList.push(<Box data={i}/>)
       if(mode === 2 && i.favorite)
@@ -48,10 +49,18 @@ export default function MainPage() {
   return (
     <>
       <Header mode={mode} setMode={setMode}/>
-        <div style={{display:'flex',alignItems:'center',flexDirection:'column'}}>
+        <div style={{display:'flex', alignItems:'center', flexDirection:'column', marginBottom:'15vh', marginTop:'10vh'}}>
           {boxList}
         </div>
       <Footer/>
       </>
   );
+}
+
+function compare(a:log, b:log){
+  if(a.datetime > b.datetime)
+    return -1;
+  if(a.datetime < b.datetime)
+    return 1;
+  return 0;
 }

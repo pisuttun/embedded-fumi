@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 
 export const Container = styled('div')({
 	display:'flex',
-	position:'absolute',
+	position:'fixed',
 	bottom:'0',
 	alignItems:'center',
 	width:'100%',
